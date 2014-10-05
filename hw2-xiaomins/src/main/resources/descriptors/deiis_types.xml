@@ -80,5 +80,22 @@
         </featureDescription>
       </features>
     </typeDescription>
+  <typeDescription>
+      <name>edu.cmu.deiis.types.Sentence</name>
+      <description/>
+      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>id</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>text</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
   </types>
 </typeSystemDescription>
