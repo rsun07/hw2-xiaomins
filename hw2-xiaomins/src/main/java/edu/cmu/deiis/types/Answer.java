@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** 
- * Updated by JCasGen Sun Oct 05 10:57:46 EDT 2014
- * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/collectionReaderDescriptor.xml
+ * Updated by JCasGen Sun Oct 05 23:52:36 EDT 2014
+ * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/LinpipeAnnotatorDescriptor.xml
  * @generated */
 public class Answer extends Annotation {
   /** @generated
