@@ -79,7 +79,7 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
         temp = new Sentence(aJCas);
         // only pass the GeneTag to Consumer if the confidence is greater than the threshold, say 0.6
         // write the information into temp variable and pass it to Comsumer in Sentence type
-        if (confidence > 0.6) {
+        if (confidence > 0.7) {
           temp.setStart(chunk.start());
           temp.setEnd(chunk.end());
           temp.setID(id);
