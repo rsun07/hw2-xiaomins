@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** 
- * Updated by JCasGen Mon Oct 06 20:35:24 EDT 2014
- * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/CasConsumerDescriptor.xml
+ * Updated by JCasGen Tue Oct 07 00:48:46 EDT 2014
+ * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/AbnerAnnotatorDescriptor.xml
  * @generated */
 public class Sentence extends Annotation {
   /** @generated
@@ -117,72 +117,6 @@ public class Sentence extends Annotation {
     if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_Text == null)
       jcasType.jcas.throwFeatMissing("Text", "edu.cmu.deiis.types.Sentence");
     jcasType.ll_cas.ll_setStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_Text, v);}    
-   
-    
-  //*--------------*
-  //* Feature: start
-
-  /** getter for start - gets 
-   * @generated
-   * @return value of the feature 
-   */
-  public int getStart() {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_start == null)
-      jcasType.jcas.throwFeatMissing("start", "edu.cmu.deiis.types.Sentence");
-    return jcasType.ll_cas.ll_getIntValue(addr, ((Sentence_Type)jcasType).casFeatCode_start);}
-    
-  /** setter for start - sets  
-   * @generated
-   * @param v value to set into the feature 
-   */
-  public void setStart(int v) {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_start == null)
-      jcasType.jcas.throwFeatMissing("start", "edu.cmu.deiis.types.Sentence");
-    jcasType.ll_cas.ll_setIntValue(addr, ((Sentence_Type)jcasType).casFeatCode_start, v);}    
-   
-    
-  //*--------------*
-  //* Feature: end
-
-  /** getter for end - gets 
-   * @generated
-   * @return value of the feature 
-   */
-  public int getEnd() {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_end == null)
-      jcasType.jcas.throwFeatMissing("end", "edu.cmu.deiis.types.Sentence");
-    return jcasType.ll_cas.ll_getIntValue(addr, ((Sentence_Type)jcasType).casFeatCode_end);}
-    
-  /** setter for end - sets  
-   * @generated
-   * @param v value to set into the feature 
-   */
-  public void setEnd(int v) {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_end == null)
-      jcasType.jcas.throwFeatMissing("end", "edu.cmu.deiis.types.Sentence");
-    jcasType.ll_cas.ll_setIntValue(addr, ((Sentence_Type)jcasType).casFeatCode_end, v);}    
-   
-    
-  //*--------------*
-  //* Feature: GeneName
-
-  /** getter for GeneName - gets 
-   * @generated
-   * @return value of the feature 
-   */
-  public String getGeneName() {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_GeneName == null)
-      jcasType.jcas.throwFeatMissing("GeneName", "edu.cmu.deiis.types.Sentence");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_GeneName);}
-    
-  /** setter for GeneName - sets  
-   * @generated
-   * @param v value to set into the feature 
-   */
-  public void setGeneName(String v) {
-    if (Sentence_Type.featOkTst && ((Sentence_Type)jcasType).casFeat_GeneName == null)
-      jcasType.jcas.throwFeatMissing("GeneName", "edu.cmu.deiis.types.Sentence");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Sentence_Type)jcasType).casFeatCode_GeneName, v);}    
   }
 
     

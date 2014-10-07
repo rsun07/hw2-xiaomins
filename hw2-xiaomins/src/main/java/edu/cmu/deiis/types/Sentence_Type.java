@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** 
- * Updated by JCasGen Mon Oct 06 20:35:24 EDT 2014
+ * Updated by JCasGen Tue Oct 07 00:48:46 EDT 2014
  * @generated */
 public class Sentence_Type extends Annotation_Type {
   /** @generated 
@@ -92,78 +92,6 @@ public class Sentence_Type extends Annotation_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_Text, v);}
     
   
- 
-  /** @generated */
-  final Feature casFeat_start;
-  /** @generated */
-  final int     casFeatCode_start;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public int getStart(int addr) {
-        if (featOkTst && casFeat_start == null)
-      jcas.throwFeatMissing("start", "edu.cmu.deiis.types.Sentence");
-    return ll_cas.ll_getIntValue(addr, casFeatCode_start);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setStart(int addr, int v) {
-        if (featOkTst && casFeat_start == null)
-      jcas.throwFeatMissing("start", "edu.cmu.deiis.types.Sentence");
-    ll_cas.ll_setIntValue(addr, casFeatCode_start, v);}
-    
-  
- 
-  /** @generated */
-  final Feature casFeat_end;
-  /** @generated */
-  final int     casFeatCode_end;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public int getEnd(int addr) {
-        if (featOkTst && casFeat_end == null)
-      jcas.throwFeatMissing("end", "edu.cmu.deiis.types.Sentence");
-    return ll_cas.ll_getIntValue(addr, casFeatCode_end);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setEnd(int addr, int v) {
-        if (featOkTst && casFeat_end == null)
-      jcas.throwFeatMissing("end", "edu.cmu.deiis.types.Sentence");
-    ll_cas.ll_setIntValue(addr, casFeatCode_end, v);}
-    
-  
- 
-  /** @generated */
-  final Feature casFeat_GeneName;
-  /** @generated */
-  final int     casFeatCode_GeneName;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public String getGeneName(int addr) {
-        if (featOkTst && casFeat_GeneName == null)
-      jcas.throwFeatMissing("GeneName", "edu.cmu.deiis.types.Sentence");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_GeneName);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setGeneName(int addr, String v) {
-        if (featOkTst && casFeat_GeneName == null)
-      jcas.throwFeatMissing("GeneName", "edu.cmu.deiis.types.Sentence");
-    ll_cas.ll_setStringValue(addr, casFeatCode_GeneName, v);}
-    
-  
 
 
 
@@ -183,18 +111,6 @@ public class Sentence_Type extends Annotation_Type {
  
     casFeat_Text = jcas.getRequiredFeatureDE(casType, "Text", "uima.cas.String", featOkTst);
     casFeatCode_Text  = (null == casFeat_Text) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_Text).getCode();
-
- 
-    casFeat_start = jcas.getRequiredFeatureDE(casType, "start", "uima.cas.Integer", featOkTst);
-    casFeatCode_start  = (null == casFeat_start) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_start).getCode();
-
- 
-    casFeat_end = jcas.getRequiredFeatureDE(casType, "end", "uima.cas.Integer", featOkTst);
-    casFeatCode_end  = (null == casFeat_end) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_end).getCode();
-
- 
-    casFeat_GeneName = jcas.getRequiredFeatureDE(casType, "GeneName", "uima.cas.String", featOkTst);
-    casFeatCode_GeneName  = (null == casFeat_GeneName) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_GeneName).getCode();
 
   }
 }

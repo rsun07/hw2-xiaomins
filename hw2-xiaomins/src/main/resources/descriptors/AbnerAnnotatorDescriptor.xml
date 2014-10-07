@@ -2,7 +2,7 @@
 
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.lti.f14.hw1_xiaomins.GeneAE</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.pipeline.AbnerAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>AbnerAnnotatorDescriptor</name>
     <description/>
@@ -11,7 +11,10 @@
     <configurationParameters/>
     <configurationParameterSettings/>
     <typeSystemDescription>
-      </typeSystemDescription>
+      <imports>
+        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/deiis_types.xml"/>
+      </imports>
+    </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

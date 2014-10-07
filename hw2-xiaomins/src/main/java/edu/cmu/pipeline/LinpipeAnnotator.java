@@ -4,16 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
+import org.apache.uima.resource.ResourceInitializationException;
 
 import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.ConfidenceChunker;
 import com.aliasi.util.AbstractExternalizable;
 
+import edu.cmu.deiis.types.Gene;
 import edu.cmu.deiis.types.Sentence;
 
 /**
@@ -26,15 +29,17 @@ import edu.cmu.deiis.types.Sentence;
 public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
 
   // instance variable
-  ConfidenceChunker chunker;
-
-  int MAX_N_BEST_CHUNKS = 5; // the number of most similar words
+  private static ConfidenceChunker chunker;
+  private static final double THRESHOLD = 0.6;
+//the number of most similar words
+  private static final int MAX_N_BEST_CHUNKS = 5; 
 
   /**
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
-  public void initialize() {
+  public void initialize(UimaContext context) throws ResourceInitializationException {
     File modelFile = new File("./src/main/resources/ne-en-bio-genetag.HmmChunker");
+    chunker = null;
     try {
       chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
     } catch (IOException e) {
@@ -54,39 +59,50 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
    */
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     //read information from CollectionReader
-    FSIterator<Annotation> aIt = aJCas.getAnnotationIndex(Sentence.type).iterator();
+    FSIterator<Annotation> it = aJCas.getAnnotationIndex(Sentence.type).iterator();
     
-    //initialize variables to avoid overhead
-    Sentence sentence, temp;
-    String id;
-    String text;
-    char[] chars;
-    double confidence;
-    
-    while (aIt.hasNext()) {
+    if (it.hasNext()) {
       // read the information from the CollectionReader
-      sentence = (Sentence) aIt.next();
-      id = sentence.getID();
-      text = sentence.getText();
-      chars = text.toCharArray();
+      Sentence sentence = (Sentence) it.next();
+      String id = sentence.getID();
+      String text = sentence.getText();
+      char[] cs = text.toCharArray();
 
       // chunk the geneName with start and end positon by lingpipe chunk function
-      Iterator<Chunk> chunkIt = chunker.nBestChunks(chars, 0, chars.length, MAX_N_BEST_CHUNKS);
+      Iterator<Chunk> chunkIt = chunker.nBestChunks(cs, 0, cs.length, MAX_N_BEST_CHUNKS);
       while (chunkIt.hasNext()) {
         Chunk chunk = chunkIt.next();
+        
         // calculate the confidence of this GeneTag
-        confidence = Math.pow(2.0, chunk.score());
-        temp = new Sentence(aJCas);
+        double confidence = Math.pow(2.0, chunk.score());
+        
         // only pass the GeneTag to Consumer if the confidence is greater than the threshold, say 0.6
-        // write the information into temp variable and pass it to Comsumer in Sentence type
-        if (confidence > 0.7) {
-          temp.setStart(chunk.start());
-          temp.setEnd(chunk.end());
-          temp.setID(id);
-          temp.setText(text);
-          temp.addToIndexes();
+        // write the information into gene variable and pass it to Comsumer in Sentence type
+        if (confidence > THRESHOLD) {
+          Gene gene = new Gene(aJCas);
+          int start = chunk.start();
+          int end = chunk.end();
+          String name = text.substring(start, end);
+          // calculate the required start and end which don't have white space
+          start -= countSpace(text, start);
+          end -= countSpace(text, end) + 1;
+          // pass documents to consumer
+          gene.setStart(start);
+          gene.setEnd(end);
+          gene.setID(id);
+          gene.setGeneName(name);
+          gene.addToIndexes();
         }
       }
     }
+  }
+  
+  //count white space before the gene-token
+  private int countSpace(String text, int start){
+    int offset = 0;
+    for(int i = 0; i < start; i++)
+      if(text.charAt(i)==' ')
+        offset++;
+    return offset;
   }
 }

@@ -71,8 +71,8 @@ public class CollectionReader extends CollectionReader_ImplBase {
     Sentence temp = new Sentence(jcas);
     // get the sentence(information) from collection reader
     // store the id and sentence for later write
-    String id = line.substring(0, 13).trim();
-    String text = line.substring(14).trim();
+    String id = line.substring(0, 14).trim();
+    String text = line.substring(15).trim();
     temp.setID(id);
     temp.setText(text);
     temp.addToIndexes();

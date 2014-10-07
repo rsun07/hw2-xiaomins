@@ -13,7 +13,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
-import edu.cmu.deiis.types.Sentence;
+import edu.cmu.deiis.types.Gene;
 
 /**
  * @author Ryan Sun 
@@ -70,35 +70,26 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
     }
     
     // traversal the CAS file and find the id and gene name, then output it in regular formation
-    FSIterator<Annotation> it = jcas.getAnnotationIndex(Sentence.type).iterator();
+    FSIterator<Annotation> it = jcas.getAnnotationIndex(Gene.type).iterator();
     while(it.hasNext()){
       //read and store the related information from jcas
-      Sentence thisType = (Sentence) it.next();
-      String id = thisType.getID();
-      String geneName = thisType.getGeneName();
-      System.out.println(geneName);
-      int start = thisType.getStart();
-      int end = thisType.getEnd();
+      Gene gene = (Gene) it.next();
+      int start = gene.getStart();
+      int end = gene.getEnd();
+      String id = gene.getID();
+      String name = gene.getGeneName();
+      //System.out.println(id + "|" + start + " " + end + "|" + name + "\n\r");
       //count the white space before gene type and find & set the output start 
-      start -= countSpace(thisType.getText(), start);
-      end -= countSpace(thisType.getText(), end) + 1;
       // output the geneTag in regular formation
       try {
-          fileWriter.write(id + "|" + start + " " + end + "|" + geneName + "\n\r");
+          fileWriter.write(id + "|" + start + " " + end + "|" + name + "\n\r");
           fileWriter.flush();
       } catch (IOException ex) {
         ex.printStackTrace();
       }
     }   
   }
-  //count white space before the gene-token
-  private int countSpace(String sentence, int start){
-    int offset = 0;
-    for(int i = 0; i < start; i++)
-      if(sentence.charAt(i)==' ')
-        offset++;
-    return offset;
-  }
+
   @Override
   public void destroy() {
     if (fileWriter != null) {

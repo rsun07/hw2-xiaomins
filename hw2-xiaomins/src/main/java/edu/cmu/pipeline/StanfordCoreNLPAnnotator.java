@@ -10,6 +10,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import edu.cmu.deiis.types.Gene;
 import edu.cmu.deiis.types.Sentence;
 import edu.cmu.support.PosTagNamedEntityRecognizer;
   /**
@@ -28,7 +29,7 @@ public class StanfordCoreNLPAnnotator extends JCasAnnotator_ImplBase {
     public void process(JCas aJCas) throws AnalysisEngineProcessException {
       
       //initialize variables to avoid overhead
-      Sentence sentence, temp;
+      Sentence sentence;
       String id;
       String text;
       //double confidence;
@@ -56,13 +57,13 @@ public class StanfordCoreNLPAnnotator extends JCasAnnotator_ImplBase {
         Iterator<Map.Entry<Integer, Integer>> mapIt = map.entrySet().iterator();   
         while(mapIt.hasNext()){
           Map.Entry<Integer, Integer> entry = mapIt.next();
-          temp = new Sentence(aJCas);
-          // write the information into temp variable and pass it to Consumer in Sentence type
-          temp.setStart(entry.getKey());
-          temp.setEnd(entry.getValue());
-          temp.setID(id);
-          temp.setText(text);
-          temp.addToIndexes();
+          Gene gene = new Gene(aJCas);
+          // write the information into gene variable and pass it to Consumer in Sentence type
+          gene.setStart(entry.getKey());
+          gene.setEnd(entry.getValue());
+          gene.setID(id);
+          gene.setGeneName(text);
+          gene.addToIndexes();
         }
      }
   }

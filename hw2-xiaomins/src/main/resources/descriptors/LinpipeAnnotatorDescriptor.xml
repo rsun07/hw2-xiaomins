@@ -19,8 +19,10 @@
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs/>
-        <outputs/>
+        <inputs>
+          </inputs>
+        <outputs>
+          </outputs>
         <languagesSupported/>
       </capability>
     </capabilities>
