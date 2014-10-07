@@ -35,11 +35,11 @@ public class AbnerAnnotator extends JCasAnnotator_ImplBase {
         String[][] ents = tag.getEntities(text);
         for (int i = 0; i < ents[0].length; i++) {
           int start = text.indexOf(ents[0][i]);
-          System.out.println(ents[0][i]);
+          //System.out.println(ents[0][i]);
           if(start != -1){
-          int end = start + ents[0][i].length();
-          start -= countSpace(text, start);
-          end -= countSpace(text, end) + 1;         
+              int end = start + ents[0][i].length();
+              start -= countSpace(text, start);
+              end -= countSpace(text, end) + 1;         
               //create gene sentence CAS
               Gene gene = new Gene(aJCas);
               gene.setID(id);

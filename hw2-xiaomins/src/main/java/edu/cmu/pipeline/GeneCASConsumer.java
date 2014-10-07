@@ -14,6 +14,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
 import edu.cmu.deiis.types.Gene;
+import edu.cmu.support.Evaluator;
 
 /**
  * @author Ryan Sun 
@@ -29,6 +30,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
    */  
   File outFile;
   FileWriter fileWriter;
+  Evaluator evaluator;
   
   public GeneCASConsumer() {
   }
@@ -38,29 +40,43 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
    * by the framework when the CAS Consumer is first created.
    * Consumer will implement this method to obtain parameter values 
    * and perform various initialization steps.
+   * It will also initialize the evaluator.
    * 
    * @throws ResourceInitializationException
    *         when encounter errors during initializing
    */
-  public void initialize() throws ResourceInitializationException {
-    
-    //get configuration parameter
-    String oPath = (String) getUimaContext().getConfigParameterValue("outputFile");
-    
-    // check validation of output directory
-    if (oPath == null) {
-      throw new ResourceInitializationException(
-              ResourceInitializationException.CONFIG_SETTING_ABSENT, new Object[] { "outputFile" });
-    }
-    // create output directory
-    outFile = new File(oPath.trim());    
+  public void initialize() throws ResourceInitializationException {   
+    initOutput();
     try {
-      fileWriter = new FileWriter(outFile);
+      initEvaluator();
     } catch (IOException e) {
-      throw new ResourceInitializationException(e);
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
   
+    private void initOutput() throws ResourceInitializationException{
+      //get configuration parameter
+      String oPath = (String) getUimaContext().getConfigParameterValue("outputFile");
+      
+      // check validation of output directory
+      if (oPath == null) {
+        throw new ResourceInitializationException(
+                ResourceInitializationException.CONFIG_SETTING_ABSENT, new Object[] { "outputFile" });
+      }
+      // create output directory
+      outFile = new File(oPath.trim());    
+      try {
+        fileWriter = new FileWriter(outFile);
+      } catch (IOException e) {
+        throw new ResourceInitializationException(e);
+      }
+    }
+    
+    private void initEvaluator() throws IOException{
+      String path = "./src/main/resources/data/sample.out"; 
+      evaluator = new Evaluator(path);
+    }
   public void processCas(CAS aCAS) throws ResourceProcessException {
     JCas jcas;
     try {
@@ -78,6 +94,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       int end = gene.getEnd();
       String id = gene.getID();
       String name = gene.getGeneName();
+      evaluator.judge(name);
       //System.out.println(id + "|" + start + " " + end + "|" + name + "\n\r");
       //count the white space before gene type and find & set the output start 
       // output the geneTag in regular formation
@@ -87,12 +104,14 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       } catch (IOException ex) {
         ex.printStackTrace();
       }
-    }   
+    }
   }
 
   @Override
   public void destroy() {
     if (fileWriter != null) {
+      // print the evaluation report
+      evaluator.printReport();
       try {
         fileWriter.close();
       } catch (IOException e) {
