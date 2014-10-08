@@ -15,7 +15,9 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
 import edu.cmu.hw2.types.Gene;
-import edu.cmu.support.Evaluator;
+/*
+ * import edu.cmu.support.Evaluator;
+ */
 
 /**
  * @author Ryan Sun 
@@ -32,7 +34,10 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
    */  
   File outFile;
   FileWriter fileWriter;
-  private Evaluator evaluator;
+  /*
+   * private Evaluator evaluator;
+   */
+  
   private HashMap<String, String> genes;
   
   public GeneCASConsumer() {
@@ -49,14 +54,14 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
   public void initialize() throws ResourceInitializationException {   
     
     initOutput();
-    
-    try {
-      initEvaluator();
+   /*
+    * try {
+    * initEvaluator();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
+    */
      genes = new HashMap<String, String>();
   }
   
@@ -86,10 +91,12 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
      * This function will initialize the Evaluator
      * @throws IOException
      */
+   /* 
     private void initEvaluator() throws IOException{
       String path = "./src/main/resources/data/GENE.eval"; 
       evaluator = new Evaluator(path);
     }
+    */
     
     /**
      * The processCas function will process the data from the aggregated annotator,
@@ -156,7 +163,9 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       end -= countSpace(text, end) + 1;
       String id = gene.getID();
       String name = gene.getGeneName();
-      evaluator.judge(name);
+      /*
+       * evaluator.judge(name);
+       */
       //System.out.println(id + "|" + start + " " + end + "|" + name + "\n\r");
       //count the white space before gene type and find & set the output start 
       // output the geneTag in regular formation
@@ -174,7 +183,9 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
   public void destroy() {
     if (fileWriter != null) {
       // print the evaluation report
-      evaluator.printReport();
+      /*
+       * evaluator.printReport();
+       */
       try {
         fileWriter.close();
       } catch (IOException e) {
