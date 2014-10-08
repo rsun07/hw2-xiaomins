@@ -34,7 +34,9 @@ public class LinpipeTraining {
     CharLmHmmChunker chunkerEstimator = new CharLmHmmChunker(factory, hmmEstimator);
 
     System.out.println("Setting up Data Parser");
+    /*
     @SuppressWarnings("deprecation")
+    
     com.aliasi.corpus.parsers.GeneTagParser parser = new com.aliasi.corpus.parsers.GeneTagParser(); // PLEASE
                                                                                                     // IGNORE
                                                                                                     // DEPRECATION
@@ -46,5 +48,6 @@ public class LinpipeTraining {
 
     System.out.println("Compiling and Writing Model to File=" + modelFile);
     AbstractExternalizable.compileTo(chunkerEstimator, modelFile);
+    */
   }
 }
