@@ -10,8 +10,8 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
-import edu.cmu.deiis.types.Gene;
-import edu.cmu.deiis.types.Sentence;
+import edu.cmu.hw2.types.Gene;
+import edu.cmu.hw2.types.Sentence;
 import edu.cmu.support.PosTagNamedEntityRecognizer;
   /**
    * @author Ryan Sun

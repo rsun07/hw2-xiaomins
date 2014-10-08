@@ -12,17 +12,15 @@
     <configurationParameterSettings/>
     <typeSystemDescription>
       <imports>
-        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/deiis_types.xml"/>
+        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/hw2_types.xml"/>
       </imports>
       </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
       <capability>
-        <inputs>
-          </inputs>
-        <outputs>
-          </outputs>
+        <inputs/>
+        <outputs/>
         <languagesSupported/>
       </capability>
     </capabilities>

@@ -6,8 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/*
- * I write this test class under the help of my classmate Yifu Wang
+/**
+ * This Evaluator class will calculate the precision, recall and F-score for CPE 
  */
 public class Evaluator {
   private int correct_num = 0;
@@ -18,6 +18,13 @@ public class Evaluator {
 
   private String goldenAnswer;
 
+  /**
+   * Constructor of the Evaluator class.
+   * Read the golden standard from a file and initialize other variable
+   * 
+   * @param path
+   * @throws IOException
+   */
   public Evaluator(String path) throws IOException {
     File filename = new File(path);
     InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
@@ -37,6 +44,11 @@ public class Evaluator {
     goldenAnswer = sb.toString();
   }
 
+  /**
+   * the judge() function will judge whether an answer is correct.
+   * It also calculate the sum of answers given for later use.
+   * @param ans
+   */
   public void judge(String ans) {
     answer_num++;
     if (goldenAnswer.contains(ans)) {
@@ -44,6 +56,9 @@ public class Evaluator {
     }
   }
 
+  /**
+   * The printReport() method will calculate and print the precision, recall and F-score for CPE at the end.
+   */
   public void printReport() {
     double precision = (double) correct_num / answer_num;
     double recall = (double) correct_num / golden_num;

@@ -80,49 +80,5 @@
         </featureDescription>
       </features>
     </typeDescription>
-  <typeDescription>
-      <name>edu.cmu.deiis.types.Sentence</name>
-      <description/>
-      <supertypeName>edu.cmu.deiis.types.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>ID</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-        <featureDescription>
-          <name>Text</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-      </features>
-    </typeDescription>
-    <typeDescription>
-      <name>edu.cmu.deiis.types.Gene</name>
-      <description/>
-      <supertypeName>uima.tcas.Annotation</supertypeName>
-      <features>
-        <featureDescription>
-          <name>ID</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-        <featureDescription>
-          <name>GeneName</name>
-          <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-        <featureDescription>
-          <name>start</name>
-          <description/>
-          <rangeTypeName>uima.cas.Integer</rangeTypeName>
-        </featureDescription>
-        <featureDescription>
-          <name>end</name>
-          <description/>
-          <rangeTypeName>uima.cas.Integer</rangeTypeName>
-        </featureDescription>
-      </features>
-    </typeDescription>
   </types>
 </typeSystemDescription>

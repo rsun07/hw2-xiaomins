@@ -3,6 +3,7 @@ package edu.cmu.pipeline;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -13,14 +14,15 @@ import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 
-import edu.cmu.deiis.types.Gene;
+import edu.cmu.hw2.types.Gene;
 import edu.cmu.support.Evaluator;
 
 /**
  * @author Ryan Sun 
- *         The CAS consumer receives each CAS after it has been analyzed by the Analysis
- *         Engine they typically extract data from the CAS and persist selected information to
- *         aggregate data structures such as search engine indexes or databases.
+ *         
+ *         The CASConsumer receives each CAS after it has been analyzed by the Analysis Engine.
+ *         The CASConsumer will do filter, which ignore the less important GeneName.
+ *         After that, it will write the data in required formation to the output document.
  */
 public class GeneCASConsumer extends CasConsumer_ImplBase {
 
@@ -30,31 +32,38 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
    */  
   File outFile;
   FileWriter fileWriter;
-  Evaluator evaluator;
+  private Evaluator evaluator;
+  private HashMap<String, String> genes;
   
   public GeneCASConsumer() {
   }
   
   /**
-   * The initialize() method is called 
-   * by the framework when the CAS Consumer is first created.
-   * Consumer will implement this method to obtain parameter values 
-   * and perform various initialization steps.
-   * It will also initialize the evaluator.
+   * The initialize() method is called by the framework when the CAS Consumer is first created.
+   * Consumer will implement this method to obtain parameter values and perform various initialization steps.
+   * It will also initialize the evaluator for evaluating the performance of the CPE.
    * 
    * @throws ResourceInitializationException
    *         when encounter errors during initializing
    */
   public void initialize() throws ResourceInitializationException {   
+    
     initOutput();
+    
     try {
       initEvaluator();
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    
+     genes = new HashMap<String, String>();
   }
   
+  /**
+   * this private function will initialize the output document and bufferedWritter
+   * @throws ResourceInitializationException
+   */
     private void initOutput() throws ResourceInitializationException{
       //get configuration parameter
       String oPath = (String) getUimaContext().getConfigParameterValue("outputFile");
@@ -73,10 +82,19 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       }
     }
     
+    /**
+     * This function will initialize the Evaluator
+     * @throws IOException
+     */
     private void initEvaluator() throws IOException{
-      String path = "./src/main/resources/data/sample.out"; 
+      String path = "./src/main/resources/data/GENE.eval"; 
       evaluator = new Evaluator(path);
     }
+    
+    /**
+     * The processCas function will process the data from the aggregated annotator,
+     * Filter the gene that are not suitable, write the correct answer to the output document.
+     */
   public void processCas(CAS aCAS) throws ResourceProcessException {
     JCas jcas;
     try {
@@ -90,8 +108,52 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
     while(it.hasNext()){
       //read and store the related information from jcas
       Gene gene = (Gene) it.next();
+      filter(gene);
+    }
+  }
+
+   /**
+    * the filter will filter the gene.
+    * those whose precision is low, and the same tag from the two annotator will be deleted.
+    * @param gene
+    */
+    private void filter(Gene gene){
+      // get the variables from the annotator
+      String name = gene.getGeneName();
+      if(name.length() < 3)
+        return;
+      String id = gene.getID();    
+      String processorID = gene.getCasProcessorId();
+      double confidence = gene.getConfidence();
+      // filter the unimportant gene name
+      if(confidence > 0.6){
+        if(processorID.equals("Lingpipe")){
+          if(genes.containsKey(id)){
+            String existName = genes.get(id);
+            if(! (existName.contains(name) || name.contains(existName)) ){
+              genes.put(id, name);
+              writeOutput(gene);
+            }
+          }else{
+            genes.put(id, name);
+            writeOutput(gene);
+          }
+        }
+      }
+    }
+    
+    /**
+     * This function will write the gene name and the ID, the start and end position in required formation
+     * 
+     * @param gene
+     */
+    private void writeOutput(Gene gene){
       int start = gene.getStart();
       int end = gene.getEnd();
+      String text = gene.getText();
+      // calculate the required start and end which don't have white space
+      start -= countSpace(text, start);
+      end -= countSpace(text, end) + 1;
       String id = gene.getID();
       String name = gene.getGeneName();
       evaluator.judge(name);
@@ -105,9 +167,10 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
         ex.printStackTrace();
       }
     }
-  }
-
-  @Override
+  /**
+   * the destroy() function will close the fileWriter
+   * It will also call the method in Eluator class to print the final report of precision, recall and F-score
+   */
   public void destroy() {
     if (fileWriter != null) {
       // print the evaluation report
@@ -118,5 +181,19 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
         // it does not matter during destroy
       }
     }
+  }
+  
+  /**
+   * this function will count the white space before the gene-token
+   * @param text
+   * @param start
+   * @return
+   */
+  private int countSpace(String text, int start){
+    int offset = 0;
+    for(int i = 0; i < start; i++)
+      if(text.charAt(i) == ' ')
+        offset++;
+    return offset;
   }
 }

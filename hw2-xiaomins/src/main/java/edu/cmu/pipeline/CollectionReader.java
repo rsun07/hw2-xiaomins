@@ -14,7 +14,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
-import edu.cmu.deiis.types.Sentence;
+import edu.cmu.hw2.types.Sentence;
 
 /**
  * 

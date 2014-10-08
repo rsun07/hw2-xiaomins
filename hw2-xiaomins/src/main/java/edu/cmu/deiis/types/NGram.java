@@ -11,8 +11,8 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** 
- * Updated by JCasGen Tue Oct 07 00:48:46 EDT 2014
- * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/AbnerAnnotatorDescriptor.xml
+ * Updated by JCasGen Tue Oct 07 19:09:14 EDT 2014
+ * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/AggregateAnnotatorDescriptor.xml
  * @generated */
 public class NGram extends Annotation {
   /** @generated

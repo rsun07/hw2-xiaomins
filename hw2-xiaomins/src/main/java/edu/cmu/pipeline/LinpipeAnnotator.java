@@ -16,8 +16,8 @@ import com.aliasi.chunk.Chunk;
 import com.aliasi.chunk.ConfidenceChunker;
 import com.aliasi.util.AbstractExternalizable;
 
-import edu.cmu.deiis.types.Gene;
-import edu.cmu.deiis.types.Sentence;
+import edu.cmu.hw2.types.Gene;
+import edu.cmu.hw2.types.Sentence;
 
 /**
  * @author Ryan Sun 
@@ -25,20 +25,34 @@ import edu.cmu.deiis.types.Sentence;
  *         document from CollectionReader through JCas, find and locate the GeneTag. 
  *         if the confidence of this Tag is higher than 0.6, it will be passed to Consumer, 
  *         otherwise it will be ignored
+ *         
+ *         
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
  */
 public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
 
   // instance variable
   private static ConfidenceChunker chunker;
   private static final double THRESHOLD = 0.6;
-//the number of most similar words
+  //the number of most similar words
   private static final int MAX_N_BEST_CHUNKS = 5; 
+  private static final String CAS_PROCESSOR_ID = "Lingpipe";
 
   /**
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
   public void initialize(UimaContext context) throws ResourceInitializationException {
-    File modelFile = new File("./src/main/resources/ne-en-bio-genetag.HmmChunker");
+    File modelFile = new File("./src/main/resources/trainedModel");
     chunker = null;
     try {
       chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
@@ -83,26 +97,17 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
           int start = chunk.start();
           int end = chunk.end();
           String name = text.substring(start, end);
-          // calculate the required start and end which don't have white space
-          start -= countSpace(text, start);
-          end -= countSpace(text, end) + 1;
           // pass documents to consumer
           gene.setStart(start);
           gene.setEnd(end);
           gene.setID(id);
           gene.setGeneName(name);
+          gene.setText(text);
+          gene.setCasProcessorId(CAS_PROCESSOR_ID);
+          gene.setConfidence(confidence);
           gene.addToIndexes();
         }
       }
     }
-  }
-  
-  //count white space before the gene-token
-  private int countSpace(String text, int start){
-    int offset = 0;
-    for(int i = 0; i < start; i++)
-      if(text.charAt(i)==' ')
-        offset++;
-    return offset;
   }
 }
