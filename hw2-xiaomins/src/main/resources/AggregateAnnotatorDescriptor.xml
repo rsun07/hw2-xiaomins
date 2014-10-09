@@ -5,10 +5,10 @@
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="LinpipeAnnotatorDescriptor">
-      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/LinpipeAnnotatorDescriptor.xml"/>
+      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/LinpipeAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="AbnerAnnotatorDescriptor">
-      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptors/AbnerAnnotatorDescriptor.xml"/>
+      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/AbnerAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -16,7 +16,7 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
+    <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>

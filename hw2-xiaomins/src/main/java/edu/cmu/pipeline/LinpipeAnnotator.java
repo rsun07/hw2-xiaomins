@@ -50,11 +50,9 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
   public void initialize(UimaContext context) throws ResourceInitializationException {
-    
-    String modelFile = (String) getContext().getConfigParameterValue("model");
     chunker = null;
     try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LinpipeAnnotator.class, modelFile);
+      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LinpipeAnnotator.class, (String) context.getConfigParameterValue("model"));
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
