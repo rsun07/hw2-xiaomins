@@ -46,18 +46,18 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
   //the number of most similar words
   private static final int MAX_N_BEST_CHUNKS = 5; 
   private static final String CAS_PROCESSOR_ID = "Lingpipe";
+  private static final String LINGPIPE_MODEL = "model";
   /**
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
   public void initialize(UimaContext context) throws ResourceInitializationException {
     chunker = null;
+    String modelPath = (String) context.getConfigParameterValue(LINGPIPE_MODEL);
     try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LinpipeAnnotator.class, (String) context.getConfigParameterValue("model"));
+      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(modelPath);
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

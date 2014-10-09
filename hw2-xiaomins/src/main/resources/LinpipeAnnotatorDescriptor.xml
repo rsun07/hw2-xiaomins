@@ -20,7 +20,7 @@
       <nameValuePair>
         <name>model</name>
         <value>
-          <string>trainedModel</string>
+          <string>/trainedModel</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
