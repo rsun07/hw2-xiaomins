@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<collectionReaderDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>edu.cmu.pipeline.CollectionReader</implementationName>
+  <implementationName>edu.cmu.pipeline.GeneCASConsumer</implementationName>
   <processingResourceMetaData>
-    <name>CollectionReaderDescriptor</name>
-    <description/>
+    <name>casConsumerDescriptor</name>
+    <description>print</description>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters searchStrategy="language_fallback">
+    <configurationParameters>
       <configurationParameter>
-        <name>InputDirectory</name>
+        <name>outputFile</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -18,9 +18,9 @@
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>InputDirectory</name>
+        <name>outputFile</name>
         <value>
-          <string>./src/main/resources/data/hw2.in</string>
+          <string>hw2-xiaomins.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
@@ -39,10 +39,10 @@
       </capability>
     </capabilities>
   <operationalProperties>
-      <modifiesCas>true</modifiesCas>
+      <modifiesCas>false</modifiesCas>
       <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
-      <outputsNewCASes>true</outputsNewCASes>
+      <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
   </processingResourceMetaData>
   <resourceManagerConfiguration/>
-</collectionReaderDescription>
+</casConsumerDescription>

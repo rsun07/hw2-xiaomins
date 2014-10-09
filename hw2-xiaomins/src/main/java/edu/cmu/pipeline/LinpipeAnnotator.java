@@ -1,6 +1,5 @@
 package edu.cmu.pipeline;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -47,15 +46,15 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
   //the number of most similar words
   private static final int MAX_N_BEST_CHUNKS = 5; 
   private static final String CAS_PROCESSOR_ID = "Lingpipe";
-
   /**
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
   public void initialize(UimaContext context) throws ResourceInitializationException {
-    File modelFile = new File("./src/main/resources/trainedModel");
+    
+    String modelFile = (String) getContext().getConfigParameterValue("model");
     chunker = null;
     try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
+      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LinpipeAnnotator.class, modelFile);
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

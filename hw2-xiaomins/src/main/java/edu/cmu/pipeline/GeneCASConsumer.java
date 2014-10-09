@@ -65,10 +65,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
      genes = new HashMap<String, String>();
   }
   
-  /**
-   * this private function will initialize the output document and bufferedWritter
-   * @throws ResourceInitializationException
-   */
+
     private void initOutput() throws ResourceInitializationException{
       //get configuration parameter
       String oPath = (String) getUimaContext().getConfigParameterValue("outputFile");
@@ -87,10 +84,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       }
     }
     
-    /**
-     * This function will initialize the Evaluator
-     * @throws IOException
-     */
+
    /* 
     private void initEvaluator() throws IOException{
       String path = "./src/main/resources/data/GENE.eval"; 
@@ -119,11 +113,6 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
     }
   }
 
-   /**
-    * the filter will filter the gene.
-    * those whose precision is low, and the same tag from the two annotator will be deleted.
-    * @param gene
-    */
     private void filter(Gene gene){
       // get the variables from the annotator
       String name = gene.getGeneName();
@@ -149,11 +138,6 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       }
     }
     
-    /**
-     * This function will write the gene name and the ID, the start and end position in required formation
-     * 
-     * @param gene
-     */
     private void writeOutput(Gene gene){
       int start = gene.getStart();
       int end = gene.getEnd();
@@ -194,7 +178,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
     }
   }
   
-  /**
+  /*
    * this function will count the white space before the gene-token
    * @param text
    * @param start

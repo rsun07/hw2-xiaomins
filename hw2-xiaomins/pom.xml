@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.cmu.lti.11791.f14.hw2</groupId>
 	<artifactId>hw2-xiaomins</artifactId>
-	<version>0.0.9-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<repositories>
 		<repository>
 			<id>oaqa</id>
@@ -52,6 +52,14 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+        <resource>
+            <directory>src/main/java/</directory>
+            <includes>
+                <include>edu/cmu/pipeline/trainedModel</include>
+            </includes>
+        </resource>
+    </resources>
 	</build>
 	<dependencies>
 		<dependency>
