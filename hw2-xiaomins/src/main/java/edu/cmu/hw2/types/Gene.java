@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Thu Oct 09 20:50:44 EDT 2014
+ * Updated by JCasGen Thu Oct 09 21:09:24 EDT 2014
  * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/AggregateAnnotatorDescriptor.xml
  * @generated */
 public class Gene extends Annotation {

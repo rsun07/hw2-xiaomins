@@ -52,14 +52,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<resources>
-        <resource>
-            <directory>src/main/java/</directory>
-            <includes>
-                <include>edu/cmu/pipeline/trainedModel</include>
-            </includes>
-        </resource>
-    </resources>
 	</build>
 	<dependencies>
 		<dependency>

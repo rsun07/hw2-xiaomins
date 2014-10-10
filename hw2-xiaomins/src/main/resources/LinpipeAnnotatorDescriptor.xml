@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>edu.cmu.pipeline.GeneCASConsumer</implementationName>
-  <processingResourceMetaData>
-    <name>casConsumerDescriptor</name>
-    <description>print</description>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.pipeline.LinpipeAnnotator</annotatorImplementationName>
+  <analysisEngineMetaData>
+    <name>LinpipeAnnotatorDescriptor</name>
+    <description/>
     <version>1.0</version>
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>outputFile</name>
+        <name>model</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -18,14 +18,17 @@
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>outputFile</name>
+        <name>model</name>
         <value>
-          <string>hw2-xiaomins.out</string>
+          <string>/TrainedModel.dic</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
-      </typeSystemDescription>
+      <imports>
+        <import name="type.hw2_types"/>
+      </imports>
+    </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
@@ -36,10 +39,10 @@
       </capability>
     </capabilities>
   <operationalProperties>
-      <modifiesCas>false</modifiesCas>
-      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
+      <modifiesCas>true</modifiesCas>
+      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
-  </processingResourceMetaData>
+  </analysisEngineMetaData>
   <resourceManagerConfiguration/>
-</casConsumerDescription>
+</analysisEngineDescription>
