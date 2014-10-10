@@ -20,21 +20,12 @@ import edu.cmu.hw2.types.Sentence;
 
 /**
  * @author Ryan Sun 
- *         This annotator is based on the algorithm provided by lingpipe it read the
- *         document from CollectionReader through JCas, find and locate the GeneTag. 
- *         if the confidence of this Tag is higher than 0.6, it will be passed to Consumer, 
- *         otherwise it will be ignored
+ * This annotator is based on the algorithm provided by lingpipe it read the
+ * document from CollectionReader through JCas, find and locate the GeneTag. 
+ * if the confidence of this Tag is higher than 0.6, it will be passed to Consumer, 
+ * otherwise it will be ignored
  *         
- *         
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- * 
+ * Licensed to the Apache Software Foundation (ASF)
  *   http://www.apache.org/licenses/LICENSE-2.0
  * 
  */
