@@ -1,5 +1,6 @@
 package edu.cmu.pipeline;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
    */  
   File outFile;
   FileWriter fileWriter;
+  BufferedWriter bufWriter;
   /*
    * private Evaluator evaluator;
    */
@@ -58,7 +60,6 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
     * try {
     * initEvaluator();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     */
@@ -79,6 +80,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       outFile = new File(oPath.trim());    
       try {
         fileWriter = new FileWriter(outFile);
+        bufWriter = new BufferedWriter(fileWriter);
       } catch (IOException e) {
         throw new ResourceInitializationException(e);
       }
@@ -154,8 +156,8 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
       //count the white space before gene type and find & set the output start 
       // output the geneTag in regular formation
       try {
-          fileWriter.write(id + "|" + start + " " + end + "|" + name + "\n\r");
-          fileWriter.flush();
+          bufWriter.write(id + "|" + start + " " + end + "|" + name);
+          bufWriter.newLine();
       } catch (IOException ex) {
         ex.printStackTrace();
       }
@@ -171,6 +173,7 @@ public class GeneCASConsumer extends CasConsumer_ImplBase {
        * evaluator.printReport();
        */
       try {
+        bufWriter.close();
         fileWriter.close();
       } catch (IOException e) {
         // it does not matter during destroy

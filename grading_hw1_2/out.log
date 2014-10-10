@@ -1,0 +1,87 @@
+Mac!!!
+Error file: /Users/mac/git/hw2-xiaomins/grading_hw1_2/report.txt
+SCRIPT_DIR=/Users/mac/git/hw2-xiaomins/grading_hw1_2/.
+Student: xiaomins, input file: hw2.in,  output file: hw2-xiaomins.out  CPE file: CpeDescriptor.xml
+POM-file: /Users/mac/.m2/repository/edu/cmu/lti/11791/f14/hw2//hw2-xiaomins/0.0.10-SNAPSHOT/hw2-xiaomins-0.0.10-SNAPSHOT.pom group id: edu.cmu.lti.11791.f14.hw2 artifact id: hw2-xiaomins version '0.0.10-SNAPSHOT' base dir: 'run/hw2-xiaomins'
+/Users/mac/git/hw2-xiaomins/grading_hw1_2
+Output file is  missing, let's execute hw2-xiaomins
+mvn clean compile exec:java -Dexec.mainClass=RunJarCPE  -Dexec.args="CpeDescriptor.xml"
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for edu.cmu.lti.11791:grading:jar:1.0
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 19, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building grading 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ grading ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ grading ---
+[WARNING] Using platform encoding (MacRoman actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ grading ---
+[WARNING] File encoding has not been set, using platform encoding MacRoman, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /Users/mac/git/hw2-xiaomins/grading_hw1_2/run/hw2-xiaomins/target/classes
+[INFO] 
+[INFO] --- exec-maven-plugin:1.3.2:java (default-cli) @ grading ---
+[WARNING] Warning: killAfter is now deprecated. Do you need it ? Please comment on MEXEC-6.
+Path: file:/Users/mac/.m2/repository/edu/cmu/lti/11791/f14/hw2/hw2-xiaomins/0.0.10-SNAPSHOT/hw2-xiaomins-0.0.10-SNAPSHOT.jar!
+Path full: file:/Users/mac/.m2/repository/edu/cmu/lti/11791/f14/hw2/hw2-xiaomins/0.0.10-SNAPSHOT/hw2-xiaomins-0.0.10-SNAPSHOT.jar!/CpeDescriptor.xml
+Relative base with JAR:file:/Users/mac/.m2/repository/edu/cmu/lti/11791/f14/hw2/hw2-xiaomins/0.0.10-SNAPSHOT/hw2-xiaomins-0.0.10-SNAPSHOT.jar!
+Parsing CPE Descriptor: 'CpeDescriptor.xml'
+Instantiating CPE
+point
+Loading default NLPBA tagging module...
+Running CPE
+To abort processing, type "abort" and press enter.
+CPM Initialization Complete
+Completed 15000 documents
+Total Time Elapsed: 68648 ms 
+Initialization Time: 1985 ms
+Processing Time: 66663 ms
+
+
+ ------------------ PERFORMANCE REPORT ------------------
+
+Component Name: CollectionReaderDescriptor
+Event Type: Process
+Duration: 585ms (0.88%)
+Result: success
+Component Name: AggregateAnnotatorDescriptor
+Event Type: Analysis
+Duration: 64969ms (97.86%)
+Sub-events:
+	Component Name: LinpipeAnnotatorDescriptor
+	Event Type: Analysis
+	Duration: 7685ms (11.58%)
+
+	Component Name: AbnerAnnotatorDescriptor
+	Event Type: Analysis
+	Duration: 56610ms (85.27%)
+
+	Component Name: Fixed Flow Controller
+	Event Type: Analysis
+	Duration: 367ms (0.55%)
+
+Component Name: AggregateAnnotatorDescriptor
+Event Type: End of Batch
+Duration: 53ms (0.08%)
+Component Name: casConsumerDescriptor
+Event Type: Analysis
+Duration: 739ms (1.11%)
+Component Name: casConsumerDescriptor
+Event Type: End of Batch
+Duration: 47ms (0.07%)
+
+Precision: 0.814752462901
+Recall: 0.715411990145
+F1 Score: 0.761857563478
+/Users/mac/git/hw2-xiaomins/grading_hw1_2
+# of student records processed: 
