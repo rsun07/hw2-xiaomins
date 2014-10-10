@@ -2,19 +2,30 @@
 
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.pipeline.AbnerAnnotator</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.pipeline.LinpipeAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>AbnerAnnotatorDescriptor</name>
+    <name>LinpipeAnnotatorDescriptor</name>
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
-    <configurationParameterSettings/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>model</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>model</name>
+        <value>
+          <string>/TrainedModel.dic</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
     <typeSystemDescription>
-      <imports>
-        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/hw2_types.xml"/>
-      </imports>
-    </typeSystemDescription>
+      </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

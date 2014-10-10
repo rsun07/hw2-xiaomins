@@ -41,7 +41,7 @@ import edu.cmu.hw2.types.Sentence;
 public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
 
   // instance variable
-  private static ConfidenceChunker chunker;
+  private ConfidenceChunker chunker;
   private static final double THRESHOLD = 0.6;
   //the number of most similar words
   private static final int MAX_N_BEST_CHUNKS = 5; 
@@ -51,10 +51,11 @@ public class LinpipeAnnotator extends JCasAnnotator_ImplBase {
    * initialize the chunker with model this modification can avoid initialize every time, which boosts the efficiency
    */
   public void initialize(UimaContext context) throws ResourceInitializationException {
-    chunker = null;
+    chunker = null;  
     String modelPath = (String) context.getConfigParameterValue(LINGPIPE_MODEL);
     try {
-      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(modelPath);
+      chunker = (ConfidenceChunker) AbstractExternalizable.readResourceObject(LinpipeAnnotator.class, modelPath);
+      System.out.println("point");
     } catch (IOException e) {
       e.printStackTrace();
     } catch (ClassNotFoundException e) {

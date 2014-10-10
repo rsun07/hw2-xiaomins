@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>edu.cmu.pipeline.LinpipeAnnotator</annotatorImplementationName>
-  <analysisEngineMetaData>
-    <name>LinpipeAnnotatorDescriptor</name>
-    <description/>
+  <implementationName>edu.cmu.pipeline.GeneCASConsumer</implementationName>
+  <processingResourceMetaData>
+    <name>casConsumerDescriptor</name>
+    <description>print</description>
     <version>1.0</version>
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>model</name>
+        <name>outputFile</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -18,16 +18,13 @@
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>model</name>
+        <name>outputFile</name>
         <value>
-          <string>/trainedModel</string>
+          <string>hw2-xiaomins.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
-      <imports>
-        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/hw2_types.xml"/>
-      </imports>
       </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
@@ -39,10 +36,10 @@
       </capability>
     </capabilities>
   <operationalProperties>
-      <modifiesCas>true</modifiesCas>
-      <multipleDeploymentAllowed>true</multipleDeploymentAllowed>
+      <modifiesCas>false</modifiesCas>
+      <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
-  </analysisEngineMetaData>
+  </processingResourceMetaData>
   <resourceManagerConfiguration/>
-</analysisEngineDescription>
+</casConsumerDescription>

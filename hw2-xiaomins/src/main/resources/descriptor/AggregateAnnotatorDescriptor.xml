@@ -4,11 +4,11 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="LinpipeAnnotatorDescriptor">
-      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/LinpipeAnnotatorDescriptor.xml"/>
-    </delegateAnalysisEngine>
     <delegateAnalysisEngine key="AbnerAnnotatorDescriptor">
-      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/AbnerAnnotatorDescriptor.xml"/>
+      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptor/AbnerAnnotatorDescriptor.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="LinpipeAnnotatorDescriptor">
+      <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/descriptor/LinpipeAnnotatorDescriptor.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -20,8 +20,8 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>LinpipeAnnotatorDescriptor</node>
         <node>AbnerAnnotatorDescriptor</node>
+        <node>LinpipeAnnotatorDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

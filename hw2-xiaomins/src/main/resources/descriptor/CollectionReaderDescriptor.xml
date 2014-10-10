@@ -25,10 +25,7 @@
       </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
-      <imports>
-        <import location="/Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/hw2_types.xml"/>
-      </imports>
-    </typeSystemDescription>
+      </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

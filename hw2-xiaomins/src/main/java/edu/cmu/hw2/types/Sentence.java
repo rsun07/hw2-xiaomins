@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Wed Oct 08 20:50:56 EDT 2014
+ * Updated by JCasGen Thu Oct 09 20:50:45 EDT 2014
  * XML source: /Users/mac/git/hw2-xiaomins/hw2-xiaomins/src/main/resources/AggregateAnnotatorDescriptor.xml
  * @generated */
 public class Sentence extends Annotation {
