@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.cmu.lti.11791.f14.hw2</groupId>
 	<artifactId>hw2-xiaomins</artifactId>
-	<version>0.0.14</version>
+	<version>0.0.16-SNAPSHOT</version>
 	<repositories>
 		<repository>
 			<id>oaqa</id>
@@ -13,11 +13,11 @@
 	<distributionManagement>
 		<repository>
 			<id>deployment</id>
-			<url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-releases</url>
+<url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-snapshots</url>
+<url>http://mu.lti.cs.cmu.edu:8081/nexus/content/repositories/course-snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
@@ -98,5 +98,6 @@
 	<scm>
 		<connection>scm:git:git@github.com:rsun07/hw0-xiaomins.git</connection>
 		<developerConnection>scm:git:git@github.com:rsun07/hw0-xiaomins.git</developerConnection>
-	</scm>
+	  <tag>HEAD</tag>
+  </scm>
 </project>
