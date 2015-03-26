@@ -96,8 +96,8 @@
 		</dependency>
 	</dependencies>
 	<scm>
-		<connection>scm:git:git@github.com:rsun07/hw0-xiaomins.git</connection>
-		<developerConnection>scm:git:git@github.com:rsun07/hw0-xiaomins.git</developerConnection>
+		<connection>scm:git:git@github.com:rsun07/hw2-xiaomins.git</connection>
+		<developerConnection>scm:git:git@github.com:rsun07/hw2-xiaomins.git</developerConnection>
 	  <tag>HEAD</tag>
   </scm>
 </project>
